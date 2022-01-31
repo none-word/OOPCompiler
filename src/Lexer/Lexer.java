@@ -13,7 +13,7 @@ public class Lexer {
 
     private static final List<String> operators = Arrays.asList("and", "or", "xor",
                     "not", "<", "<=", ">", ">=", "=", "/=", "*", "/", "%",
-                    "+", "-", "[", "]", "(", ")", ":=", ":", ",");
+                    "+", "-", "[", "]", "(", ")", ":=", ":", ",", ".");
 
     private static final List<String> keywords = Arrays.asList(
             "var", "is", "type", "end",
@@ -65,18 +65,14 @@ public class Lexer {
         int index = -1;
         int length = 0;
 
-        for (int operatorsIndex = 0; operatorsIndex < operators.size() && operatorsIndex <= order; operatorsIndex++) {
-            var operator = operators.get(operatorsIndex);
-            if (!isSymbolic(operator)) continue;
+        var operator = operators.get(order);
+        if (!isSymbolic(operator)) return new Pair<>(index, length);
 
-            var operatorIndex = word.indexOf(operator);
-            if (operatorIndex == -1) continue;
-            if (index != -1 && operatorIndex > index) continue;
-            if (operator.length() < length) continue;
+        var operatorIndex = word.indexOf(operator);
+        if (operatorIndex == -1) return new Pair<>(index, length);
 
-            index = operatorIndex;
-            length = operator.length();
-        }
+        index = operatorIndex;
+        length = operator.length();
 
         return new Pair<>(index, length);
     }
