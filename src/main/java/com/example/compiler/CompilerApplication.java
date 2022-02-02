@@ -1,5 +1,8 @@
 package com.example.compiler;
 
+import com.example.compiler.lexer.InvalidTokenException;
+import com.example.compiler.lexer.Lexer;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;

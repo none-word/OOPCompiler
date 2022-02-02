@@ -1,4 +1,4 @@
-package com.example.compiler;
+package com.example.compiler.lexer;
 
 public class InvalidTokenException extends Exception {
     private final String lexeme;

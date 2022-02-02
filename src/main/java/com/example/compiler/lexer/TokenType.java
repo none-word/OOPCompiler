@@ -1,4 +1,4 @@
-package com.example.compiler;
+package com.example.compiler.lexer;
 
 public enum TokenType {
     Keyword,
