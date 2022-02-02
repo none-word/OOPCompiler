@@ -1,5 +1,7 @@
 package com.example.compiler.lexer;
 
+import com.example.compiler.utils.Pair;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

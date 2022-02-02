@@ -1,4 +1,4 @@
-package com.example.compiler.lexer;
+package com.example.compiler.utils;
 
 public class Pair<F, S> {
     private F first;
