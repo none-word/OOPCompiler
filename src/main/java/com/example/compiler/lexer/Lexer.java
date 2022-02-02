@@ -101,11 +101,11 @@ public class Lexer {
     }
 
     private Token resolveToken(String word) throws InvalidTokenException {
-        if (keywords.contains(word)) return new Token(TokenType.Keyword, word);
-        if (operators.contains(word)) return new Token(TokenType.Operator, word);
-        if (isDeclarationSeparator(word)) return new Token(TokenType.DeclarationSeparator, word);
-        if (isIdentifier(word)) return new Token(TokenType.Identifier, word);
-        if (isLiteral(word)) return new Token(TokenType.Literal, word);
+        if (keywords.contains(word)) return new Token(TokenType.KEYWORD, word);
+        if (operators.contains(word)) return new Token(TokenType.OPERATOR, word);
+        if (isDeclarationSeparator(word)) return new Token(TokenType.DECLARATION_SEPARATOR, word);
+        if (isIdentifier(word)) return new Token(TokenType.IDENTIFIER, word);
+        if (isLiteral(word)) return new Token(TokenType.LITERAL, word);
         throw new InvalidTokenException(word);
     }
 
