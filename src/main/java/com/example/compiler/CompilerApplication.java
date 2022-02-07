@@ -4,6 +4,7 @@ import com.example.compiler.lexer.InvalidTokenException;
 import com.example.compiler.lexer.Lexer;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -12,9 +13,9 @@ public class CompilerApplication {
 
     private static final String PROGRAM_NAME = "CodeExample.txt";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ClassLoader classLoader = CompilerApplication.class.getClassLoader();
-        String program = Objects.requireNonNull(classLoader.getResource(PROGRAM_NAME)).getFile();
+        String program = new String(Objects.requireNonNull(classLoader.getResourceAsStream(PROGRAM_NAME)).readAllBytes());
         log.debug("Program: {}", program);
 
         Lexer lexer = new Lexer();
