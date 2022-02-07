@@ -1,6 +1,0 @@
-com/example/compiler/Pair.class
-com/example/compiler/InvalidTokenException.class
-com/example/compiler/CompilerApplication.class
-com/example/compiler/TokenType.class
-com/example/compiler/Token.class
-com/example/compiler/Lexer.class
