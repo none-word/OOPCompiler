@@ -1,4 +1,8 @@
 var a : Array[Integer](10)
+
+
+
+
 a.set(i) := 55
 x := a.get(i.Plus(1))
 
