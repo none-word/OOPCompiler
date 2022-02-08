@@ -93,6 +93,31 @@ public class GrammarChecker {
 
     }
 
+    private void specifyBody() {
+        while (true) {
+            try {
+                specifyVariableDeclaration();
+            } catch (Exception exception) {
+                // ToDo: specifyStatement
+            }
+        }
+    }
+
+    private void specifyIfStatement() {
+        verifyToken("if");
+        specifyExpression();
+        verifyToken("then");
+        specifyB
+    }
+
+    private void specifyReturnStatement() {
+        verifyToken("return");
+        try {
+            specifyExpression();
+        } catch (Exception ignored) {
+        }
+    }
+
     private void specifyExpression() {
         specifyPrimary();
         while (lexeme().equals(".")) {
