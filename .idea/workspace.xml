@@ -5,36 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a0cbf78-4030-4443-8255-3fc9317a1577" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project-template.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOPCompilerProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OOPCompilerProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOPCompiler_new.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOPCompilerProject/Lexer/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOPCompilerProject/Lexer/CodeExample.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOPCompilerProject/Lexer/InvalidTokenException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOPCompilerProject/Lexer/Lexer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOPCompilerProject/Lexer/Pair.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOPCompilerProject/Lexer/Token.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOPCompilerProject/Lexer/TokenType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer/CodeExample.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer/InvalidTokenException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer/Lexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer/Pair.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer/Token.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Lexer/TokenType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/OOPCompiler_new-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/OOPCompiler_new-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxAnalysis/CompilationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxAnalysis/GrammarChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/compiler/CompilerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/compiler/CompilerApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/compiler/lexer/InvalidTokenException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/compiler/lexer/InvalidTokenException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/compiler/lexer/Lexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/compiler/lexer/Lexer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/compiler/lexer/LexerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/compiler/lexer/LexerTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -43,7 +32,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="24WTNGXKqWjm2nr4jDKAVPomcXO" />
   <component name="ProjectViewState">
@@ -68,15 +56,6 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager">
-    <configuration name="CompilerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="corretto-11" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.example.compiler.CompilerApplication" />
-      <module name="OOPCompiler" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -86,6 +65,24 @@
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CompilerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-11" />
+      <option name="MAIN_CLASS_NAME" value="com.example.compiler.CompilerApplication" />
+      <module name="OOPCompiler" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
