@@ -93,12 +93,27 @@ public class GrammarChecker {
 
     }
 
-    private void specifExpression() {
+    private void specifyExpression() {
+        specifyPrimary();
+        while (lexeme().equals(".")) {
+            verifyToken(".");
+            specifyIdentifier();
+            try {
+                specifyArguments();
+            } catch (Exception exception) {
+                break;
+            }
+        }
     }
 
     private void specifyArguments() {
         verifyToken("(");
-
+        specifyExpression();
+        while (lexeme().equals(",")) {
+            verifyToken(",");
+            specifyExpression();
+        }
+        verifyToken(")");
     }
 
     private void specifyPrimary() {
