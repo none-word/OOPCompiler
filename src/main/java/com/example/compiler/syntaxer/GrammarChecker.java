@@ -89,10 +89,6 @@ public class GrammarChecker {
 
     }
 
-    public void specifyConstructorDeclaration() {
-
-    }
-
     private void specifyBody() {
         while (true) {
             try {
@@ -103,11 +99,56 @@ public class GrammarChecker {
         }
     }
 
+    public void specifyConstructorDeclaration() {
+        verifyToken("this");
+        try {
+            // ToDo: specifyParameters
+        } catch (Exception ignored) {
+        }
+        verifyToken("is");
+        specifyBody();
+        verifyToken("end");
+    }
+
+    private void specifyStatement() {
+        try {
+            specifyAssignment();
+        } catch (Exception exception) {
+            try {
+                specifyWhileLoop();
+            } catch (Exception e) {
+                try {
+                    specifyIfStatement();
+                } catch (Exception ex) {
+                    specifyReturnStatement();
+                }
+            }
+        }
+    }
+
+    private void specifyAssignment() {
+        specifyIdentifier();
+        verifyToken(":=");
+        specifyExpression();
+    }
+
+    private void specifyWhileLoop () {
+        verifyToken("while");
+        specifyExpression();
+        verifyToken("loop");
+        specifyBody();
+        verifyToken("end");
+    }
+
     private void specifyIfStatement() {
         verifyToken("if");
         specifyExpression();
         verifyToken("then");
-        specifyB
+        specifyBody();
+        if ("else".equals(lexeme())) {
+            specifyBody();
+        }
+        verifyToken("end");
     }
 
     private void specifyReturnStatement() {
