@@ -2,19 +2,15 @@ package com.example.compiler.syntaxer;
 
 import com.example.compiler.lexer.Token;
 import com.example.compiler.lexer.TokenType;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 public class GrammarChecker {
 
     public final List<Token> tokens;
-    int currentIndex, size;
-
-    public GrammarChecker(List<Token> tokens) {
-        this.tokens = tokens;
-        currentIndex = 0;
-        size = tokens.size();
-    }
+    private int currentIndex = 0;
 
     private String lexeme() {
         return tokens.get(currentIndex).getLexeme();
@@ -28,41 +24,65 @@ public class GrammarChecker {
         if (!lexeme().equals(lexeme)) {
             throw new CompilationException();
         } else {
-            currentIndex++;
+            incrementIndex();
         }
     }
 
-    private void verifyTokenByTokenType(TokenType tokenType) {
+    private void verifyTokenType(TokenType tokenType) {
         if (!tokenType.equals(tokenType())) {
             throw new CompilationException();
         } else {
-            currentIndex++;
+            incrementIndex();
         }
     }
 
-//    public boolean isClassDeclaration() {
-//        verifyToken(tokens.get(0), "class");
-//
-//    }
-//
+    public void specifyClassDeclaration() {
+        verifyToken("class");
+        specifyClassName();
+        if (lexeme().equals("extends")) {
+            verifyToken("extends");
+            specifyClassName();
+        }
+        verifyToken("is");
+        verifyToken("{");
+        while (true) {
+            int validIndex = currentIndex;
+            try {
+                specifyMemberDeclaration();
+            } catch (Exception e) {
+                currentIndex = validIndex;
+                break;
+            }
+        }
+        verifyToken("}");
+        verifyToken("end");
+    }
+
     public void specifyClassName() {
         specifyIdentifier();
         if (lexeme().equals("[")) {
-            currentIndex++;
+            verifyToken("[");
             specifyClassName();
             if (!lexeme().equals("]")) {
                 throw new CompilationException();
             } else {
-                currentIndex++;
+                incrementIndex();
             }
         }
     }
 
+    private void incrementIndex() {
+        currentIndex++;
+        if (currentIndex == tokens.size()) {
+            throw new CompilationException();
+        }
+    }
+
     public void specifyIdentifier() {
-        if (tokens.get(currentIndex).getType() != TokenType.IDENTIFIER) {
+        if (tokenType() != TokenType.IDENTIFIER) {
             throw new CompilationException();
         } else {
-            currentIndex++;
+            incrementIndex();
         }
     }
 
@@ -82,28 +102,62 @@ public class GrammarChecker {
         verifyToken("var");
         specifyIdentifier();
         verifyToken(":");
-
+        specifyExpression();
     }
 
     public void specifyMethodDeclaration() {
+        verifyToken("method");
+        specifyIdentifier();
+        if (lexeme().equals("(")) {
+            specifyParameters();
+        }
+        if (lexeme().equals(":")) {
+            verifyToken(":");
+            specifyIdentifier();
+        }
+        verifyToken("is");
+        specifyBody();
+        verifyToken("end");
+    }
 
+    private void specifyAdditionalParameters() {
+        while (lexeme().equals(",")) {
+            specifyParameterDeclaration();
+        }
+    }
+
+    public void specifyParameters() {
+        verifyToken("(");
+        specifyParameterDeclaration();
+        specifyAdditionalParameters();
+        verifyToken(")");
+    }
+
+    public void specifyParameterDeclaration() {
+        specifyIdentifier();
+        specifyClassName();
     }
 
     private void specifyBody() {
         while (true) {
+            int validState = currentIndex;
             try {
                 specifyVariableDeclaration();
             } catch (Exception exception) {
-                // ToDo: specifyStatement
+                currentIndex = validState;
+                try {
+                    specifyStatement();
+                } catch (Exception e) {
+                    currentIndex = validState;
+                    break;
+                }
             }
         }
     }
-
     public void specifyConstructorDeclaration() {
         verifyToken("this");
-        try {
-            // ToDo: specifyParameters
-        } catch (Exception ignored) {
+        if (lexeme().equals("(")) {
+            specifyParameters();
         }
         verifyToken("is");
         specifyBody();
@@ -132,7 +186,7 @@ public class GrammarChecker {
         specifyExpression();
     }
 
-    private void specifyWhileLoop () {
+    private void specifyWhileLoop() {
         verifyToken("while");
         specifyExpression();
         verifyToken("loop");
@@ -184,7 +238,7 @@ public class GrammarChecker {
 
     private void specifyPrimary() {
         try {
-            verifyTokenByTokenType(TokenType.LITERAL);
+            verifyTokenType(TokenType.LITERAL);
         } catch (Exception exception) {
             try {
                 verifyToken("this");
