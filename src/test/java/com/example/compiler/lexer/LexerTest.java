@@ -9,6 +9,8 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @Slf4j
 class LexerTest {
 

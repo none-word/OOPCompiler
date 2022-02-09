@@ -9,8 +9,234 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GrammarChecker {
 
-    public final List<Token> tokens;
+    private List<Token> tokens;
+    private Tree tree;
     private int currentIndex = 0;
+
+    public Tree checkGrammar(List<Token> tokens) {
+        this.tokens = tokens;
+        tree = new Tree();
+        specifyClassDeclaration(tree.getRoot());
+        return tree;
+    }
+
+    private void specifyClassDeclaration(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.CLASS_DECLARATION, parentNode);
+        verifyToken("class");
+        specifyClassName(node);
+        if (lexeme().equals("extends")) {
+            verifyToken("extends");
+            specifyClassName(node);
+        }
+        verifyToken("is");
+        while (true) {
+        int validIndex = currentIndex;
+        try {
+            specifyMemberDeclaration(node);
+        } catch (Exception e) {
+            currentIndex = validIndex;
+            break;
+        }
+    }
+    verifyToken("end");
+    }
+
+    public void specifyClassName(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.CLASS_NAME, parentNode);
+        specifyIdentifier(node);
+        if (lexeme().equals("[")) {
+            verifyToken("[");
+            specifyClassName(node);
+            if (!lexeme().equals("]")) {
+            throw new CompilationException();
+        } else {
+            incrementIndex();
+        }
+        }
+    }
+
+    public void specifyIdentifier(Node parentNode) {
+        tree.addNode(FormalGrammar.IDENTIFIER, lexeme(), parentNode);
+        if (tokenType() != TokenType.IDENTIFIER) {
+            throw new CompilationException();
+        } else {
+            incrementIndex();
+        }
+    }
+
+    public void specifyMemberDeclaration(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.MEMBER_DECLARATION, parentNode);
+        try {
+            specifyVariableDeclaration(node);
+        } catch (CompilationException e) {
+            try {
+            specifyMethodDeclaration(node);
+        } catch (CompilationException exception) {
+            specifyConstructorDeclaration(node);
+        }
+        }
+    }
+
+    public void specifyVariableDeclaration(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.VARIABLE_DECLARATION, parentNode);
+        verifyToken("var");
+        specifyIdentifier(node);
+        verifyToken(":");
+        specifyExpression(node);
+    }
+
+    public void specifyMethodDeclaration(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.METHOD_DECLARATION, parentNode);
+        verifyToken("method");
+        specifyIdentifier(node);
+        if (lexeme().equals("(")) {
+            specifyParameters(node);
+        }
+        if (lexeme().equals(":")) {
+            verifyToken(":");
+            specifyIdentifier(node);
+        }
+        verifyToken("is");
+        specifyBody(node);
+        verifyToken("end");
+    }
+
+    public void specifyParameters(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.PARAMETERS, parentNode);
+        verifyToken("(");
+        specifyParameterDeclaration(node);
+        while (lexeme().equals(",")) {
+            specifyParameterDeclaration(node);
+        }
+        verifyToken(")");
+    }
+
+    public void specifyParameterDeclaration(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.PARAMETER_DECLARATION, parentNode);
+        specifyIdentifier(node);
+        specifyClassName(node);
+    }
+
+    private void specifyBody(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.BODY, parentNode);
+        while (true) {
+            int validState = currentIndex;
+            try {
+                specifyVariableDeclaration(node);
+            } catch (Exception exception) {
+                currentIndex = validState;
+                try {
+                    specifyStatement(node);
+                } catch (Exception e) {
+                    currentIndex = validState;
+                    break;
+                }
+            }
+        }
+    }
+    public void specifyConstructorDeclaration(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.CONSTRUCTOR_DECLARATION, parentNode);
+        verifyToken("this");
+        if (lexeme().equals("(")) {
+            specifyParameters(node);
+        }
+        verifyToken("is");
+        specifyBody(node);
+        verifyToken("end");
+    }
+
+    private void specifyStatement(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.STATEMENT, parentNode);
+        try {
+            specifyAssignment(node);
+        } catch (Exception exception) {
+            try {
+                specifyWhileLoop(node);
+            } catch (Exception e) {
+                try {
+                    specifyIfStatement(node);
+                } catch (Exception ex) {
+                    specifyReturnStatement(node);
+                }
+            }
+        }
+    }
+
+    private void specifyAssignment(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.ASSIGNMENT, parentNode);
+        specifyIdentifier(node);
+        verifyToken(":=");
+        specifyExpression(node);
+    }
+
+    private void specifyWhileLoop(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.WHILE_LOOP, parentNode);
+        verifyToken("while");
+        specifyExpression(node);
+        verifyToken("loop");
+        specifyBody(node);
+        verifyToken("end");
+    }
+
+    private void specifyIfStatement(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.IF_STATEMENT, parentNode);
+        verifyToken("if");
+        specifyExpression(node);
+        verifyToken("then");
+        specifyBody(node);
+        if ("else".equals(lexeme())) {
+            specifyBody(node);
+        }
+        verifyToken("end");
+    }
+
+    private void specifyReturnStatement(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.RETURN_STATEMENT, parentNode);
+        verifyToken("return");
+        try {
+            specifyExpression(node);
+        } catch (Exception ignored) {
+            // ToDO: fix
+        }
+    }
+
+    private void specifyExpression(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.EXPRESSION, parentNode);
+        specifyPrimary(node);
+        while (lexeme().equals(".")) {
+            verifyToken(".");
+            specifyIdentifier(node);
+            try {
+                specifyArguments(node);
+            } catch (Exception exception) {
+                break;
+            }
+        }
+    }
+
+    private void specifyArguments(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.ARGUMENTS, parentNode);
+        verifyToken("(");
+        specifyExpression(node);
+        while (lexeme().equals(",")) {
+            verifyToken(",");
+            specifyExpression(node);
+        }
+        verifyToken(")");
+    }
+
+    private void specifyPrimary(Node parentNode) {
+        Node node = tree.addNode(FormalGrammar.PRIMARY, parentNode);
+        try {
+            verifyTokenType(TokenType.LITERAL);
+        } catch (Exception exception) {
+            try {
+                verifyToken("this");
+            } catch (Exception e) {
+                specifyClassName(node);
+            }
+        }
+    }
 
     private String lexeme() {
         return tokens.get(currentIndex).getLexeme();
@@ -36,216 +262,10 @@ public class GrammarChecker {
         }
     }
 
-    public void specifyClassDeclaration() {
-        verifyToken("class");
-        specifyClassName();
-        if (lexeme().equals("extends")) {
-            verifyToken("extends");
-            specifyClassName();
-        }
-        verifyToken("is");
-        verifyToken("{");
-        while (true) {
-            int validIndex = currentIndex;
-            try {
-                specifyMemberDeclaration();
-            } catch (Exception e) {
-                currentIndex = validIndex;
-                break;
-            }
-        }
-        verifyToken("}");
-        verifyToken("end");
-    }
-
-    public void specifyClassName() {
-        specifyIdentifier();
-        if (lexeme().equals("[")) {
-            verifyToken("[");
-            specifyClassName();
-            if (!lexeme().equals("]")) {
-                throw new CompilationException();
-            } else {
-                incrementIndex();
-            }
-        }
-    }
-
     private void incrementIndex() {
         currentIndex++;
         if (currentIndex == tokens.size()) {
             throw new CompilationException();
-        }
-    }
-
-    public void specifyIdentifier() {
-        if (tokenType() != TokenType.IDENTIFIER) {
-            throw new CompilationException();
-        } else {
-            incrementIndex();
-        }
-    }
-
-    public void specifyMemberDeclaration() {
-        try {
-            specifyVariableDeclaration();
-        } catch (CompilationException e) {
-            try {
-                specifyMethodDeclaration();
-            } catch (CompilationException exception) {
-                specifyConstructorDeclaration();
-            }
-        }
-    }
-
-    public void specifyVariableDeclaration() {
-        verifyToken("var");
-        specifyIdentifier();
-        verifyToken(":");
-        specifyExpression();
-    }
-
-    public void specifyMethodDeclaration() {
-        verifyToken("method");
-        specifyIdentifier();
-        if (lexeme().equals("(")) {
-            specifyParameters();
-        }
-        if (lexeme().equals(":")) {
-            verifyToken(":");
-            specifyIdentifier();
-        }
-        verifyToken("is");
-        specifyBody();
-        verifyToken("end");
-    }
-
-    private void specifyAdditionalParameters() {
-        while (lexeme().equals(",")) {
-            specifyParameterDeclaration();
-        }
-    }
-
-    public void specifyParameters() {
-        verifyToken("(");
-        specifyParameterDeclaration();
-        specifyAdditionalParameters();
-        verifyToken(")");
-    }
-
-    public void specifyParameterDeclaration() {
-        specifyIdentifier();
-        specifyClassName();
-    }
-
-    private void specifyBody() {
-        while (true) {
-            int validState = currentIndex;
-            try {
-                specifyVariableDeclaration();
-            } catch (Exception exception) {
-                currentIndex = validState;
-                try {
-                    specifyStatement();
-                } catch (Exception e) {
-                    currentIndex = validState;
-                    break;
-                }
-            }
-        }
-    }
-    public void specifyConstructorDeclaration() {
-        verifyToken("this");
-        if (lexeme().equals("(")) {
-            specifyParameters();
-        }
-        verifyToken("is");
-        specifyBody();
-        verifyToken("end");
-    }
-
-    private void specifyStatement() {
-        try {
-            specifyAssignment();
-        } catch (Exception exception) {
-            try {
-                specifyWhileLoop();
-            } catch (Exception e) {
-                try {
-                    specifyIfStatement();
-                } catch (Exception ex) {
-                    specifyReturnStatement();
-                }
-            }
-        }
-    }
-
-    private void specifyAssignment() {
-        specifyIdentifier();
-        verifyToken(":=");
-        specifyExpression();
-    }
-
-    private void specifyWhileLoop() {
-        verifyToken("while");
-        specifyExpression();
-        verifyToken("loop");
-        specifyBody();
-        verifyToken("end");
-    }
-
-    private void specifyIfStatement() {
-        verifyToken("if");
-        specifyExpression();
-        verifyToken("then");
-        specifyBody();
-        if ("else".equals(lexeme())) {
-            specifyBody();
-        }
-        verifyToken("end");
-    }
-
-    private void specifyReturnStatement() {
-        verifyToken("return");
-        try {
-            specifyExpression();
-        } catch (Exception ignored) {
-            // ToDO: fix
-        }
-    }
-
-    private void specifyExpression() {
-        specifyPrimary();
-        while (lexeme().equals(".")) {
-            verifyToken(".");
-            specifyIdentifier();
-            try {
-                specifyArguments();
-            } catch (Exception exception) {
-                break;
-            }
-        }
-    }
-
-    private void specifyArguments() {
-        verifyToken("(");
-        specifyExpression();
-        while (lexeme().equals(",")) {
-            verifyToken(",");
-            specifyExpression();
-        }
-        verifyToken(")");
-    }
-
-    private void specifyPrimary() {
-        try {
-            verifyTokenType(TokenType.LITERAL);
-        } catch (Exception exception) {
-            try {
-                verifyToken("this");
-            } catch (Exception e) {
-                specifyClassName();
-            }
         }
     }
 }
