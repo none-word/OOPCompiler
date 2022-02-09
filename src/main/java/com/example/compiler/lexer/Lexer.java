@@ -20,7 +20,7 @@ public class Lexer {
     private static final List<String> keywords = Arrays.asList(
             "var", "is", "type", "end",
             "array", "if", "then", "else", "size", "true", "false", "for",
-            "in", "loop", "Integer", "Real", "Boolean", "return", "while",
+            "in", "loop", /* "Integer", "Real", "Boolean", */ "return", "while",
             "class", "method", "extends", "this");
 
     public Token[] run (String program) throws InvalidTokenException {

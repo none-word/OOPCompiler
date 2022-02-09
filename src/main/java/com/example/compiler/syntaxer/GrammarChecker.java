@@ -30,15 +30,15 @@ public class GrammarChecker {
         }
         verifyToken("is");
         while (true) {
-        int validIndex = currentIndex;
-        try {
-            specifyMemberDeclaration(node);
-        } catch (Exception e) {
-            currentIndex = validIndex;
-            break;
+            int validIndex = currentIndex;
+            try {
+                specifyMemberDeclaration(node);
+            } catch (Exception e) {
+                currentIndex = validIndex;
+                break;
+            }
         }
-    }
-    verifyToken("end");
+        verifyToken("end");
     }
 
     public void specifyClassName(Node parentNode) {
@@ -48,10 +48,8 @@ public class GrammarChecker {
             verifyToken("[");
             specifyClassName(node);
             if (!lexeme().equals("]")) {
-            throw new CompilationException();
-        } else {
-            incrementIndex();
-        }
+                throw new CompilationException();
+            }
         }
     }
 
@@ -70,10 +68,10 @@ public class GrammarChecker {
             specifyVariableDeclaration(node);
         } catch (CompilationException e) {
             try {
-            specifyMethodDeclaration(node);
-        } catch (CompilationException exception) {
-            specifyConstructorDeclaration(node);
-        }
+                specifyMethodDeclaration(node);
+            } catch (CompilationException exception) {
+                specifyConstructorDeclaration(node);
+            }
         }
     }
 
@@ -134,6 +132,7 @@ public class GrammarChecker {
             }
         }
     }
+
     public void specifyConstructorDeclaration(Node parentNode) {
         Node node = tree.addNode(FormalGrammar.CONSTRUCTOR_DECLARATION, parentNode);
         verifyToken("this");
@@ -250,7 +249,10 @@ public class GrammarChecker {
         if (!lexeme().equals(lexeme)) {
             throw new CompilationException();
         } else {
-            incrementIndex();
+            try {
+                incrementIndex();
+            } catch (Exception ignored) {
+            }
         }
     }
 

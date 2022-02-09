@@ -1,2 +1,4 @@
-class Integer extends AnyValue is
+class ClassName extends AnyValue is
+  var Min : Integer
+  var Max : Integer
 end
