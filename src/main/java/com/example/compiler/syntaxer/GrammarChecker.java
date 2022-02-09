@@ -35,6 +35,7 @@ public class GrammarChecker {
                 specifyMemberDeclaration(node);
             } catch (Exception e) {
                 currentIndex = validIndex;
+                node.deleteLastChild();
                 break;
             }
         }
@@ -47,9 +48,7 @@ public class GrammarChecker {
         if (lexeme().equals("[")) {
             verifyToken("[");
             specifyClassName(node);
-            if (!lexeme().equals("]")) {
-                throw new CompilationException();
-            }
+            verifyToken("]");
         }
     }
 
@@ -64,12 +63,17 @@ public class GrammarChecker {
 
     public void specifyMemberDeclaration(Node parentNode) {
         Node node = tree.addNode(FormalGrammar.MEMBER_DECLARATION, parentNode);
+        int validIndex = currentIndex;
         try {
             specifyVariableDeclaration(node);
         } catch (CompilationException e) {
+            currentIndex = validIndex;
+            node.deleteLastChild();
             try {
                 specifyMethodDeclaration(node);
             } catch (CompilationException exception) {
+                currentIndex = validIndex;
+                node.deleteLastChild();
                 specifyConstructorDeclaration(node);
             }
         }
@@ -112,6 +116,7 @@ public class GrammarChecker {
     public void specifyParameterDeclaration(Node parentNode) {
         Node node = tree.addNode(FormalGrammar.PARAMETER_DECLARATION, parentNode);
         specifyIdentifier(node);
+        verifyToken(":");
         specifyClassName(node);
     }
 
@@ -123,10 +128,12 @@ public class GrammarChecker {
                 specifyVariableDeclaration(node);
             } catch (Exception exception) {
                 currentIndex = validState;
+                node.deleteLastChild();
                 try {
                     specifyStatement(node);
                 } catch (Exception e) {
                     currentIndex = validState;
+                    node.deleteLastChild();
                     break;
                 }
             }
@@ -146,15 +153,22 @@ public class GrammarChecker {
 
     private void specifyStatement(Node parentNode) {
         Node node = tree.addNode(FormalGrammar.STATEMENT, parentNode);
+        int validState = currentIndex;
         try {
             specifyAssignment(node);
         } catch (Exception exception) {
+            currentIndex = validState;
+            node.deleteLastChild();
             try {
                 specifyWhileLoop(node);
             } catch (Exception e) {
+                currentIndex = validState;
+                node.deleteLastChild();
                 try {
                     specifyIfStatement(node);
                 } catch (Exception ex) {
+                    currentIndex = validState;
+                    node.deleteLastChild();
                     specifyReturnStatement(node);
                 }
             }
@@ -164,7 +178,8 @@ public class GrammarChecker {
     private void specifyAssignment(Node parentNode) {
         Node node = tree.addNode(FormalGrammar.ASSIGNMENT, parentNode);
         specifyIdentifier(node);
-        verifyToken(":=");
+        verifyToken(":");
+        verifyToken("=");
         specifyExpression(node);
     }
 
@@ -192,10 +207,12 @@ public class GrammarChecker {
     private void specifyReturnStatement(Node parentNode) {
         Node node = tree.addNode(FormalGrammar.RETURN_STATEMENT, parentNode);
         verifyToken("return");
+        int validIndex = currentIndex;
         try {
             specifyExpression(node);
         } catch (Exception ignored) {
-            // ToDO: fix
+            currentIndex = validIndex;
+            node.deleteLastChild();
         }
     }
 
@@ -205,9 +222,12 @@ public class GrammarChecker {
         while (lexeme().equals(".")) {
             verifyToken(".");
             specifyIdentifier(node);
+            int validIndex = currentIndex;
             try {
                 specifyArguments(node);
             } catch (Exception exception) {
+                currentIndex = validIndex;
+                node.deleteLastChild();
                 break;
             }
         }
@@ -226,12 +246,17 @@ public class GrammarChecker {
 
     private void specifyPrimary(Node parentNode) {
         Node node = tree.addNode(FormalGrammar.PRIMARY, parentNode);
+        int validIndex = currentIndex;
         try {
+            node.setValue(lexeme());
             verifyTokenType(TokenType.LITERAL);
         } catch (Exception exception) {
+            currentIndex = validIndex;
             try {
                 verifyToken("this");
+                node.setValue(lexeme());
             } catch (Exception e) {
+                currentIndex = validIndex;
                 specifyClassName(node);
             }
         }

@@ -28,4 +28,8 @@ public class Node {
         childNodes.add(childNode);
         return childNode;
     }
+
+    public void deleteLastChild() {
+        childNodes.remove(childNodes.size() - 1);
+    }
 }
