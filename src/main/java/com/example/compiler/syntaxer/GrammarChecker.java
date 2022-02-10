@@ -16,7 +16,19 @@ public class GrammarChecker {
     public Tree checkGrammar(List<Token> tokens) {
         this.tokens = tokens;
         tree = new Tree();
-        specifyClassDeclaration(tree.getRoot());
+        while (true) {
+            int validIndex = currentIndex;
+            try {
+                specifyClassDeclaration(tree.getRoot());
+            } catch (Exception e) {
+//                if (currentIndex < tokens.size()) {
+//                    throw new CompilationException();
+//                }
+                currentIndex = validIndex;
+                tree.getRoot().deleteLastChild();
+                break;
+            }
+        }
         return tree;
     }
 
@@ -108,6 +120,7 @@ public class GrammarChecker {
         verifyToken("(");
         specifyParameterDeclaration(node);
         while (lexeme().equals(",")) {
+            verifyToken(",");
             specifyParameterDeclaration(node);
         }
         verifyToken(")");
