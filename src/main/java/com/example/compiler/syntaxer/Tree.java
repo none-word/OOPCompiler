@@ -14,7 +14,7 @@ public class Tree {
         return parentNode.addChild(new Node(formalGrammar));
     }
 
-    public Node addNode(FormalGrammar formalGrammar, String value, Node parentNode) {
-        return parentNode.addChild(new Node(formalGrammar, value));
+    public void addNode(FormalGrammar formalGrammar, String value, Node parentNode) {
+        parentNode.addChild(new Node(formalGrammar, value));
     }
 }
