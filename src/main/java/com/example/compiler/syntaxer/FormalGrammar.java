@@ -18,5 +18,6 @@ public enum FormalGrammar {
     RETURN_STATEMENT,
     EXPRESSION,
     ARGUMENTS,
-    PRIMARY
+    PRIMARY,
+    IDENTIFIER
 }
