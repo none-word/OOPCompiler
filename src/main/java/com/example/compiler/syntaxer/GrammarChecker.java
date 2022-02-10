@@ -21,9 +21,9 @@ public class GrammarChecker {
             try {
                 specifyClassDeclaration(tree.getRoot());
             } catch (Exception e) {
-//                if (currentIndex < tokens.size()) {
-//                    throw new CompilationException();
-//                }
+                if (currentIndex < tokens.size()) {
+                    throw new CompilationException();
+                }
                 currentIndex = validIndex;
                 tree.getRoot().deleteLastChild();
                 break;

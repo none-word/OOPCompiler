@@ -22,4 +22,7 @@ class RealValues extends AnyValue is
  method Plus(a:Real, b:Real) : Real is
   a := a.Plus(b)
  end
+ method Minus(a:Real, b:Real) : Real is
+   a := a.Minus(b)
+  end
 end
