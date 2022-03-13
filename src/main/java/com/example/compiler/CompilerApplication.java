@@ -1,17 +1,17 @@
 package com.example.compiler;
 
+import com.example.compiler.generator.ClassFileGenerator;
 import com.example.compiler.lexer.InvalidTokenException;
 import com.example.compiler.lexer.Lexer;
 import com.example.compiler.lexer.Token;
 import com.example.compiler.syntaxer.GrammarChecker;
 import com.example.compiler.syntaxer.Tree;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class CompilerApplication {
@@ -45,6 +45,8 @@ public class CompilerApplication {
         ObjectMapper mapper = new ObjectMapper();
         File file = new File("Tree.json");
         mapper.writeValue(file, tree);
+
+        ClassFileGenerator.generateClassFiles(tree);
     }
 
 }
