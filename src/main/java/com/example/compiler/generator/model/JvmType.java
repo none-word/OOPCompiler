@@ -4,9 +4,5 @@ public enum JvmType {
     REFERENCE,
     BOOLEAN,
     INTEGER,
-    LONG,
-    DOUBLE,
-    FLOAT,
-    SHORT,
-    BYTE
+    REAL
 }

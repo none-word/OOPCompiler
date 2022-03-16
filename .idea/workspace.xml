@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1a0cbf78-4030-4443-8255-3fc9317a1577" name="Default Changelist" comment="Generator implementation started">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/CompilerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/CompilerApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ClassFileGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ClassFileGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/JvmType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/JvmType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/Variable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/TreeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/TreeUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/CodeExample3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CodeExample3.txt" afterDir="false" />
@@ -132,7 +132,7 @@
       <workItem from="1646166230213" duration="3089000" />
       <workItem from="1647160266510" duration="8757000" />
       <workItem from="1647409668995" duration="4709000" />
-      <workItem from="1647433062343" duration="7932000" />
+      <workItem from="1647433062343" duration="10184000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add maven">
       <created>1643821701346</created>
@@ -169,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647452003396</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Generator implementation started">
+      <created>1647453408943</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1647453408943</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,33 +205,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ClassFileGenerator.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/CompilerApplication.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/GrammarChecker.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/GrammarChecker.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/GrammarChecker.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/GrammarChecker.java</url>
-          <line>94</line>
-          <option name="timeStamp" value="7" />
+          <line>44</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

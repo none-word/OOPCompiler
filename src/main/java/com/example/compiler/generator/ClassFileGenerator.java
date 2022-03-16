@@ -1,5 +1,6 @@
 package com.example.compiler.generator;
 
+import com.example.compiler.generator.model.Variable;
 import com.example.compiler.syntaxer.Node;
 import com.example.compiler.syntaxer.Tree;
 import com.example.compiler.syntaxer.TreeUtil;
@@ -39,7 +40,8 @@ public class ClassFileGenerator {
     private void createClassFileForClass(Node node) {
         Pair<String, String> signature = TreeUtil.getClassSignature(node);
         String className = signature.getFirst();
-        String superClass = signature.getSecond().isEmpty() ? "java/lang/Object" : signature.getSecond();
+        String superClass = signature.getSecond() == null ? "java/lang/Object" : signature.getSecond();
+        List<Variable> classVariables = TreeUtil.classVariables(node);
         ClassWriter cw = new ClassWriter(0);
         cw.visit(Opcodes.V11, Opcodes.ACC_PUBLIC, pkg, null, superClass, new String[0]);
 

@@ -18,6 +18,7 @@ public class TreeUtil {
     private final Predicate<Node> isIdentifier = node -> node.getType().equals(FormalGrammar.IDENTIFIER);
     private final Predicate<Node> isExpression = node -> node.getType().equals(FormalGrammar.EXPRESSION);
     private final Predicate<Node> isBody = node -> node.getType().equals(FormalGrammar.BODY);
+    private final Predicate<Node> isMember = node -> node.getType().equals(FormalGrammar.MEMBER_DECLARATION);
     private final Function<Node, Stream<Node>> convertToChildNodes = nodes -> nodes.getChildNodes().stream();
     /**
      *
@@ -32,7 +33,34 @@ public class TreeUtil {
             .flatMap(convertToChildNodes)
             .map(Node::getValue)
             .collect(Collectors.toList()));
+        if (names.size() == 1) {
+            names.add(null);
+        }
         return new Pair<>(names.get(0), names.get(1));
+    }
+
+    public List<Variable> classVariables(Node node) {
+        List<Variable> variables = new ArrayList<>();
+        List<Node> variableNodes = node.getChildNodes().stream()
+            .filter(isMember)
+            .flatMap(convertToChildNodes)
+            .filter(isVariableDeclaration)
+            .collect(Collectors.toList());
+        List<String> names = variableNodes.stream()
+            .flatMap(convertToChildNodes)
+            .filter(isIdentifier)
+            .map(Node::getValue)
+            .collect(Collectors.toList());
+        List<String> types = variableNodes.stream()
+            .flatMap(convertToChildNodes)
+            .filter(isExpression)
+            .flatMap(convertToChildNodes)
+            .map(Node::getValue)
+            .collect(Collectors.toList());
+        for (int i = 0; i < variableNodes.size(); i++) {
+            variables.add(new Variable(names.get(i), types.get(i)));
+        }
+        return variables;
     }
 
     public List<Variable> localVariables(Node node) {
