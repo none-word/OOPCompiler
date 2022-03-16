@@ -2,6 +2,7 @@ package com.example.compiler.generator;
 
 import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 
+import com.example.compiler.generator.model.Constructor;
 import com.example.compiler.generator.model.JvmType;
 import com.example.compiler.generator.model.Variable;
 import com.example.compiler.syntaxer.Node;
@@ -47,6 +48,7 @@ public class ClassFileGenerator {
         String className = signature.getFirst();
         String superClass = signature.getSecond() == null ? "java/lang/Object" : signature.getSecond();
         List<Variable> classVariables = TreeUtil.classVariables(node);
+        List<Constructor> classConstructors = TreeUtil.getConstructors(node);
         ClassWriter cw = new ClassWriter(0);
         String fullName = String.format("%s/%s", pkg, className);
         // class signature

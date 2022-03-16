@@ -1,3 +1,9 @@
 class ClassName is
   var x : Integer
+  this(x : Integer) is
+    var y : Integer
+  end
+  this(a : Real, b : Integer) is
+    var m : Real
+  end
 end
