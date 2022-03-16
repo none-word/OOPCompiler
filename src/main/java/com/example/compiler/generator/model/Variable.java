@@ -10,6 +10,7 @@ public class Variable {
     private String typeName;
     private Node expression;
     private JvmType type;
+    private String typeChar;
 
     private void defineType() {
         switch (typeName) {
@@ -25,13 +26,26 @@ public class Variable {
             default:
                 type = JvmType.REFERENCE;
         }
+    }
 
+    private String computeDescriptor(JvmType type) {
+        switch (type) {
+            case REAL:
+                return "D";
+            case BOOLEAN:
+                return "B";
+            case INTEGER:
+                return "I";
+            default:
+                return "A";
+        }
     }
 
     public Variable(String name, String typeName) {
         this.name = name;
         this.typeName = typeName;
         defineType();
+        this.typeChar = computeDescriptor(this.type);
     }
 
     public Variable(String name, Node expression) {

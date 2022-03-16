@@ -1,7 +1,5 @@
 package com.example.compiler.generator;
 
-import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
-
 import com.example.compiler.generator.model.Constructor;
 import com.example.compiler.generator.model.JvmType;
 import com.example.compiler.generator.model.Variable;
@@ -9,13 +7,16 @@ import com.example.compiler.syntaxer.Node;
 import com.example.compiler.syntaxer.Tree;
 import com.example.compiler.syntaxer.TreeUtil;
 import com.example.compiler.utils.Pair;
+import lombok.experimental.UtilityClass;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Opcodes;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.experimental.UtilityClass;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Opcodes;
+
+import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 
 @UtilityClass
 public class ClassFileGenerator {
@@ -56,9 +57,9 @@ public class ClassFileGenerator {
         // class variables
         for (Variable variable : classVariables) {
             String descriptor = computeDescriptor(variable.getType());
-            Object defaultValue = null;
             cw.visitField(ACC_PUBLIC, variable.getName(), descriptor, null, 0).visitEnd();
         }
+        MethodGenerator.generateMethod(node, cw);
 
         byte[] b = cw.toByteArray();
         try (FileOutputStream outputStream = new FileOutputStream(String.format("%s.class", className))) {
