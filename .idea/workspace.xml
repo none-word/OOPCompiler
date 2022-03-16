@@ -8,9 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/CompilerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/CompilerApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ClassFileGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ClassFileGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/JvmType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/JvmType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/Variable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/TreeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/TreeUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/CodeExample3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CodeExample3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/CodeExample.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/compiler/CompilerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/compiler/CompilerApplication.class" afterDir="false" />
@@ -132,7 +130,7 @@
       <workItem from="1646166230213" duration="3089000" />
       <workItem from="1647160266510" duration="8757000" />
       <workItem from="1647409668995" duration="4709000" />
-      <workItem from="1647433062343" duration="10184000" />
+      <workItem from="1647433062343" duration="14501000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add maven">
       <created>1643821701346</created>
@@ -176,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647453408943</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Generator implementation started">
+      <created>1647455514093</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1647455514093</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,8 +210,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ClassFileGenerator.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="15" />
+          <line>60</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

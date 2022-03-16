@@ -16,11 +16,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CompilerApplication {
 
-    private static final String PROGRAM_NAME = "CodeExample2.txt";
+    private static final String PROGRAM_NAME = "CodeExample3.txt";
 
     public static void main(String[] args) throws IOException {
         ClassLoader classLoader = CompilerApplication.class.getClassLoader();
-        String program = new String(Objects.requireNonNull(classLoader.getResourceAsStream(PROGRAM_NAME)).readAllBytes());
+        String program = new String(Objects.requireNonNull(
+            classLoader.getResourceAsStream(PROGRAM_NAME))
+                                        .readAllBytes());
         log.debug("Program: {}", program);
 
         Lexer lexer = new Lexer();
@@ -29,8 +31,7 @@ public class CompilerApplication {
             tokens = lexer.run(program);
             String stringWithTokens = Arrays.toString(tokens);
             log.info("Array with tokens: {}", stringWithTokens);
-        }
-        catch (InvalidTokenException e){
+        } catch (InvalidTokenException e) {
             log.error(e.getMessage());
         }
 
