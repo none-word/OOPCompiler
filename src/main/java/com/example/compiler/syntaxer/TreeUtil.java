@@ -14,7 +14,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class TreeUtil {
 
-    private final Predicate<Node> isVariable = node -> node.getType().equals(FormalGrammar.VARIABLE_DECLARATION);
+    private final Predicate<Node> isVariableDeclaration = node -> node.getType().equals(FormalGrammar.VARIABLE_DECLARATION);
     private final Predicate<Node> isIdentifier = node -> node.getType().equals(FormalGrammar.IDENTIFIER);
     private final Predicate<Node> isExpression = node -> node.getType().equals(FormalGrammar.EXPRESSION);
     private final Predicate<Node> isBody = node -> node.getType().equals(FormalGrammar.BODY);
@@ -38,7 +38,7 @@ public class TreeUtil {
     public List<Variable> localVariables(Node node) {
         List<Variable> variables = new ArrayList<>();
         List<Node> variableNodes = node.getChildNodes().stream()
-            .filter(isVariable)
+            .filter(isVariableDeclaration)
             .flatMap(convertToChildNodes)
             .collect(Collectors.toList());
         List<String> names = variableNodes.stream()
@@ -46,9 +46,10 @@ public class TreeUtil {
             .flatMap(convertToChildNodes)
             .map(Node::getValue)
             .collect(Collectors.toList());
-        List<Node> expressions = variableNodes.stream().filter(isExpression).collect(Collectors.toList());
+        List<Node> declarations = variableNodes.stream().filter(isExpression).collect(Collectors.toList());
+
         for (int i = 0; i < variableNodes.size(); i++) {
-            variables.add(new Variable(names.get(i), expressions.get(i)));
+            variables.add(new Variable(names.get(i), ""));
         }
 
         return variables;

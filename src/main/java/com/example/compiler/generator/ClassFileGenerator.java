@@ -3,14 +3,17 @@ package com.example.compiler.generator;
 import com.example.compiler.syntaxer.Node;
 import com.example.compiler.syntaxer.Tree;
 import com.example.compiler.syntaxer.TreeUtil;
-import java.io.File;
-import java.io.IOException;
+import com.example.compiler.utils.Pair;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.experimental.UtilityClass;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Opcodes;
 
 @UtilityClass
 public class ClassFileGenerator {
+
+    private final String pkg = "currentPackage";
 
     /**
      * Takes program and generate classFiles for each class in it
@@ -34,14 +37,12 @@ public class ClassFileGenerator {
      * @param node is a class-Node
      */
     private void createClassFileForClass(Node node) {
-        String className = TreeUtil.getClassSignature(node).getFirst();
-        File file = new File(className + ".txt");
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // todo: implement logic
+        Pair<String, String> signature = TreeUtil.getClassSignature(node);
+        String className = signature.getFirst();
+        String superClass = signature.getSecond().isEmpty() ? "java/lang/Object" : signature.getSecond();
+        ClassWriter cw = new ClassWriter(0);
+        cw.visit(Opcodes.V11, Opcodes.ACC_PUBLIC, pkg, null, superClass, new String[0]);
+
     }
 
 }
