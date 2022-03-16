@@ -4,14 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a0cbf78-4030-4443-8255-3fc9317a1577" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxAnalysis/CompilationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxAnalysis/GrammarChecker.java" afterDir="false" />
+    <list default="true" id="1a0cbf78-4030-4443-8255-3fc9317a1577" name="Default Changelist" comment="Generator implementation started">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/Condition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/JvmType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/MethodImplementation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/Variable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/Instruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/Instruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/MethodParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/MethodParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/TreeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/TreeUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/CodeExample.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/compiler/CompilerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/compiler/CompilerApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/compiler/lexer/InvalidTokenException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/compiler/lexer/InvalidTokenException.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/compiler/lexer/Lexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/compiler/lexer/Lexer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/compiler/lexer/Token.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/compiler/lexer/Token.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/compiler/lexer/TokenType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/compiler/lexer/TokenType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/compiler/utils/Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/compiler/utils/Pair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/compiler/CompilerApplicationTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/compiler/CompilerApplicationTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/compiler/lexer/LexerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/compiler/lexer/LexerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/test_data/test01.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +31,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -32,6 +43,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="24WTNGXKqWjm2nr4jDKAVPomcXO" />
   <component name="ProjectViewState">
@@ -54,8 +68,9 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.CompilerApplication">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -87,9 +102,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All in OOPCompiler" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OOPCompiler" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.CompilerApplication" />
+        <item itemvalue="JUnit.All in OOPCompiler" />
       </list>
     </recent_temporary>
   </component>
@@ -104,6 +128,12 @@
       <workItem from="1643745302532" duration="623000" />
       <workItem from="1643817251958" duration="1318000" />
       <workItem from="1643821468943" duration="441000" />
+      <workItem from="1644482470935" duration="2623000" />
+      <workItem from="1645951365782" duration="413000" />
+      <workItem from="1646166230213" duration="3089000" />
+      <workItem from="1647160266510" duration="8757000" />
+      <workItem from="1647409668995" duration="4709000" />
+      <workItem from="1647433062343" duration="3212000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add maven">
       <created>1643821701346</created>
@@ -112,15 +142,58 @@
       <option name="project" value="LOCAL" />
       <updated>1643821701346</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="GrammarChecker added">
+      <created>1644355863012</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1644355863012</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Generator implementation started">
+      <created>1647197415439</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1647197415439</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: add maven" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add maven" />
+    <MESSAGE value="GrammarChecker added" />
+    <MESSAGE value="Generator implementation started" />
+    <option name="LAST_COMMIT_MESSAGE" value="Generator implementation started" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/CompilerApplication.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ClassFileGenerator.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

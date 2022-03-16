@@ -1,5 +1,6 @@
-package com.example.compiler.generator;
+package com.example.compiler.generator.model;
 
+import com.example.compiler.generator.VmOperations;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
