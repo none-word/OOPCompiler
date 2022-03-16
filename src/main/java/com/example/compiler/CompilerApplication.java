@@ -1,6 +1,5 @@
 package com.example.compiler;
 
-import com.example.compiler.generator.ClassFileGenerator;
 import com.example.compiler.lexer.InvalidTokenException;
 import com.example.compiler.lexer.Lexer;
 import com.example.compiler.lexer.Token;
@@ -16,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CompilerApplication {
 
-    private static final String PROGRAM_NAME = "CodeExample2.txt";
+    private static final String PROGRAM_NAME = "CodeExample3.txt";
 
     public static void main(String[] args) throws IOException {
         ClassLoader classLoader = CompilerApplication.class.getClassLoader();
@@ -46,7 +45,7 @@ public class CompilerApplication {
         File file = new File("Tree.json");
         mapper.writeValue(file, tree);
 
-        ClassFileGenerator.generateClassFiles(tree);
+        //ClassFileGenerator.generateClassFiles(tree);
     }
 
 }
