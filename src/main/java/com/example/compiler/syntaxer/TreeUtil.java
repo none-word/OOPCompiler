@@ -3,14 +3,13 @@ package com.example.compiler.syntaxer;
 import com.example.compiler.generator.model.Constructor;
 import com.example.compiler.generator.model.Variable;
 import com.example.compiler.utils.Pair;
-import lombok.experimental.UtilityClass;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class TreeUtil {
@@ -77,7 +76,7 @@ public class TreeUtil {
             .collect(Collectors.toList());
         for (Node cons : constructorNodes) {
             // Collecting parameters
-            List<Variable> parameters = getParameters(cons);
+            List<Variable> parameters = getParameters(cons.getChildNodes().get(0));
             // Collecting Variable declarations inside constructor
             List<Variable> declaredVariables = new ArrayList<>();
             List<Node> variableNodes = cons.getChildNodes().stream()

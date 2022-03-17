@@ -2,9 +2,8 @@ package com.example.compiler.syntaxer;
 
 import com.example.compiler.lexer.Token;
 import com.example.compiler.lexer.TokenType;
-import lombok.RequiredArgsConstructor;
-
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class GrammarChecker {
@@ -127,6 +126,9 @@ public class GrammarChecker {
     }
 
     public void specifyParameterDeclaration(Node parentNode) {
+        if (lexeme().equals(")")) {
+            return;
+        }
         Node node = tree.addNode(FormalGrammar.PARAMETER_DECLARATION, parentNode);
         specifyIdentifier(node);
         verifyToken(":");

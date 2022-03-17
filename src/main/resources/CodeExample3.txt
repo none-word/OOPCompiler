@@ -3,6 +3,20 @@ class ClassName is
   var y : Integer
   var z : Integer
 
+  this() is
+    var empty : Boolean
+  end
+
+  this(bt : Integer) is
+    var m : Real
+    var n : Integer
+  end
+
+
+  this(f : Integer, s : Real, t : Boolean) is
+    var k : Integer
+  end
+
  method Plus(a:Real, b:Real) : Real is
   var d : Integer
  end
