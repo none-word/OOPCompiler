@@ -1,0 +1,11 @@
+com\example\compiler\syntaxer\FormalGrammar.class
+com\example\compiler\lexer\InvalidTokenException.class
+com\example\compiler\syntaxer\GrammarChecker.class
+com\example\compiler\CompilerApplication.class
+com\example\compiler\syntaxer\Node.class
+com\example\compiler\lexer\Lexer.class
+com\example\compiler\syntaxer\CompilationException.class
+com\example\compiler\lexer\Token.class
+com\example\compiler\lexer\TokenType.class
+com\example\compiler\syntaxer\Tree.class
+com\example\compiler\utils\Pair.class

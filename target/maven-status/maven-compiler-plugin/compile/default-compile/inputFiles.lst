@@ -1,6 +1,11 @@
-/Users/gakostarev/IdeaProjects/OOPCompiler/src/main/java/com/example/compiler/CompilerApplication.java
-/Users/gakostarev/IdeaProjects/OOPCompiler/src/main/java/com/example/compiler/lexer/Token.java
-/Users/gakostarev/IdeaProjects/OOPCompiler/src/main/java/com/example/compiler/lexer/TokenType.java
-/Users/gakostarev/IdeaProjects/OOPCompiler/src/main/java/com/example/compiler/lexer/Lexer.java
-/Users/gakostarev/IdeaProjects/OOPCompiler/src/main/java/com/example/compiler/utils/Pair.java
-/Users/gakostarev/IdeaProjects/OOPCompiler/src/main/java/com/example/compiler/lexer/InvalidTokenException.java
+C:\Users\Evgeny\Desktop\Numerical_methods_JavaFX\OOPCompiler2\src\main\java\com\example\compiler\lexer\Token.java
+C:\Users\Evgeny\Desktop\Numerical_methods_JavaFX\OOPCompiler2\src\main\java\com\example\compiler\lexer\TokenType.java
+C:\Users\Evgeny\Desktop\Numerical_methods_JavaFX\OOPCompiler2\src\main\java\com\example\compiler\lexer\InvalidTokenException.java
+C:\Users\Evgeny\Desktop\Numerical_methods_JavaFX\OOPCompiler2\src\main\java\com\example\compiler\utils\Pair.java
+C:\Users\Evgeny\Desktop\Numerical_methods_JavaFX\OOPCompiler2\src\main\java\com\example\compiler\syntaxer\Node.java
+C:\Users\Evgeny\Desktop\Numerical_methods_JavaFX\OOPCompiler2\src\main\java\com\example\compiler\syntaxer\GrammarChecker.java
+C:\Users\Evgeny\Desktop\Numerical_methods_JavaFX\OOPCompiler2\src\main\java\com\example\compiler\lexer\Lexer.java
+C:\Users\Evgeny\Desktop\Numerical_methods_JavaFX\OOPCompiler2\src\main\java\com\example\compiler\CompilerApplication.java
+C:\Users\Evgeny\Desktop\Numerical_methods_JavaFX\OOPCompiler2\src\main\java\com\example\compiler\syntaxer\Tree.java
+C:\Users\Evgeny\Desktop\Numerical_methods_JavaFX\OOPCompiler2\src\main\java\com\example\compiler\syntaxer\CompilationException.java
+C:\Users\Evgeny\Desktop\Numerical_methods_JavaFX\OOPCompiler2\src\main\java\com\example\compiler\syntaxer\FormalGrammar.java

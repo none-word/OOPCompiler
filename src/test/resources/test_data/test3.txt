@@ -1,5 +1,13 @@
-var i is 1
-var j is 1
-while i<10 loop
-    while j<123 loop
-        x:= i * j
+class RealValues extends AnyValue is
+ this(p: Real) is
+    var Min : Real
+ end
+ var Max : Real
+ var Epsilon : Real
+ method Plus(a:Real, b:Real) : Real is
+  a := a.Plus(b)
+ end
+ method Minus(a:Real, b:Real) : Real is
+   a := a.Minus(b)
+  end
+end

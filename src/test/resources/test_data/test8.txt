@@ -1,3 +1,0 @@
-var b : Boolean(true)
-var c : 5
-
