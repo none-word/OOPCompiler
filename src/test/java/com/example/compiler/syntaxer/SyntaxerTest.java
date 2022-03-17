@@ -1,15 +1,16 @@
 package com.example.compiler.syntaxer;
 
+import static org.junit.Assert.assertEquals;
+
 import com.example.compiler.lexer.InvalidTokenException;
 import com.example.compiler.lexer.Lexer;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Arrays;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 @Slf4j
 class SyntaxerTest {
