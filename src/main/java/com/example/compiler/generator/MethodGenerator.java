@@ -34,6 +34,7 @@ public class MethodGenerator {
                 ParametersGenerator.generateParameters(method.getChildNodes().get(1), returnType),
                 null,
                 null);
+        BodyGenerator.generateBody(methodVisitor, method.getChildNodes().get(method.getChildNodes().size() - 1));
         methodVisitor.visitEnd();
     }
 

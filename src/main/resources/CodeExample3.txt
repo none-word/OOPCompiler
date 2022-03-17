@@ -1,9 +1,13 @@
 class ClassName is
   var x : Integer
-  this(x : Integer) is
-    var y : Integer
-  end
-  this(a : Real, b : Integer) is
-    var m : Real
-  end
+  var y : Integer
+  var z : Integer
+
+ method Plus(a:Real, b:Real) : Real is
+  var d : Integer
+ end
+
+ method minus(a:Real, b:Real) : Real is
+  var d : Integer
+ end
 end

@@ -16,28 +16,19 @@ public class Variable {
         switch (typeName) {
             case "Integer":
                 type = JvmType.INTEGER;
+                typeChar = "I";
                 break;
             case "Real":
                 type = JvmType.REAL;
+                typeChar = "D";
                 break;
             case "Boolean":
                 type = JvmType.BOOLEAN;
+                typeChar = "B";
                 break;
             default:
                 type = JvmType.REFERENCE;
-        }
-    }
-
-    private String computeDescriptor(JvmType type) {
-        switch (type) {
-            case REAL:
-                return "D";
-            case BOOLEAN:
-                return "B";
-            case INTEGER:
-                return "I";
-            default:
-                return "A";
+                typeChar = "A";
         }
     }
 
@@ -45,7 +36,6 @@ public class Variable {
         this.name = name;
         this.typeName = typeName;
         defineType();
-        this.typeChar = computeDescriptor(this.type);
     }
 
     public Variable(String name, Node expression) {
