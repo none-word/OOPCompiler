@@ -1,7 +1,5 @@
 package com.example.compiler.generator;
 
-import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
-
 import com.example.compiler.generator.model.Constructor;
 import com.example.compiler.generator.model.Variable;
 import com.example.compiler.syntaxer.Node;
@@ -51,14 +49,13 @@ public class ClassFileGenerator {
         ClassWriter cw = new ClassWriter(0);
         String fullName = String.format("%s/%s", pkg, className);
         classConstructors.forEach(c -> c.setClassName(fullName));
-        // class signature
+        // class signature generation
         cw.visit(Opcodes.V11, Opcodes.ACC_PUBLIC, fullName, null, superClass, null);
-        // class variables
-        for (Variable variable : classVariables) {
-            String descriptor = GeneratorUtil.computeDescriptor(variable.getType());
-            cw.visitField(ACC_PUBLIC, variable.getName(), descriptor, null, 0).visitEnd();
-        }
+        // class variables generation
+        classVariables.forEach(variable -> VariableGenerator.generateVariablesForClass(variable, cw));
+        // constructor generation
         classConstructors.forEach(c -> ConstructorGenerator.generateConstructor(c, cw));
+        // method generation
         MethodGenerator.generateMethod(node, cw);
 
         byte[] b = cw.toByteArray();
