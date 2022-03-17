@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a0cbf78-4030-4443-8255-3fc9317a1577" name="Default Changelist" comment="Compilation for class variables succeed">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/Constructor.java" afterDir="false" />
+    <list default="true" id="1a0cbf78-4030-4443-8255-3fc9317a1577" name="Default Changelist" comment="Compilation for class constructors started">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ConstructorGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/GeneratorUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ClassFileGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ClassFileGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/MethodParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/VmOperations.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/Condition.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/Instruction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/MethodImplementation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/Constructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/generator/model/Constructor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/GrammarChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/GrammarChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/TreeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/TreeUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/CodeExample3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CodeExample3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/CodeExample.txt" beforeDir="false" />
@@ -67,6 +65,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -135,7 +134,7 @@
       <workItem from="1646166230213" duration="3089000" />
       <workItem from="1647160266510" duration="8757000" />
       <workItem from="1647409668995" duration="4709000" />
-      <workItem from="1647433062343" duration="19364000" />
+      <workItem from="1647433062343" duration="28317000" />
     </task>
     <task id="LOCAL-00001" summary="feat: add maven">
       <created>1643821701346</created>
@@ -193,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647460495503</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Compilation for class constructors started">
+      <created>1647468952170</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1647468952170</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,26 +221,62 @@
     <MESSAGE value="GrammarChecker added" />
     <MESSAGE value="Generator implementation started" />
     <MESSAGE value="Compilation for class variables succeed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Compilation for class variables succeed" />
+    <MESSAGE value="Compilation for class constructors started" />
+    <option name="LAST_COMMIT_MESSAGE" value="Compilation for class constructors started" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ClassFileGenerator.java</url>
-          <line>59</line>
-          <option name="timeStamp" value="20" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ConstructorGenerator.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ClassFileGenerator.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="24" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ConstructorGenerator.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/generator/ConstructorGenerator.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/TreeUtil.java</url>
-          <line>98</line>
-          <option name="timeStamp" value="28" />
+          <line>79</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/TreeUtil.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/GrammarChecker.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/GrammarChecker.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/GrammarChecker.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/GrammarChecker.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/compiler/syntaxer/GrammarChecker.java</url>
+          <line>118</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
