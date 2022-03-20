@@ -11,7 +11,7 @@ public class GeneratorUtil {
             case REAL:
                 return "D";
             case BOOLEAN:
-                return "B";
+                return "Z";
             case INTEGER:
                 return "I";
             default:
@@ -26,7 +26,7 @@ public class GeneratorUtil {
             case "Real":
                 return "D";
             case "Boolean":
-                return "B";
+                return "Z";
             default:
                 return "A";
         }
