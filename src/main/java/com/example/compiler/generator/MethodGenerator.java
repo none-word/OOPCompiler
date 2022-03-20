@@ -1,19 +1,25 @@
 package com.example.compiler.generator;
 
+import static com.example.compiler.syntaxer.FormalGrammar.IDENTIFIER;
+import static com.example.compiler.syntaxer.FormalGrammar.MEMBER_DECLARATION;
+import static com.example.compiler.syntaxer.FormalGrammar.METHOD_DECLARATION;
+import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
+
 import com.example.compiler.syntaxer.Node;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.experimental.UtilityClass;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static com.example.compiler.syntaxer.FormalGrammar.*;
-import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
-
 @UtilityClass
 public class MethodGenerator {
 
+    /**
+     *
+     * @param node is a member node to parse
+     * @param classWriter is a global ClassWriter
+     */
     public void generateMethod(Node node, ClassWriter classWriter) {
         node.getChildNodes().stream()
                 .filter(n -> MEMBER_DECLARATION.equals(n.getType()))

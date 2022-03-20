@@ -6,6 +6,11 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class GeneratorUtil {
 
+    /**
+     *
+     * @param type type of JVM element
+     * @return JVM descriptor
+     */
     public String computeDescriptor(JvmType type) {
         switch (type) {
             case REAL:
@@ -19,6 +24,11 @@ public class GeneratorUtil {
         }
     }
 
+    /**
+     *
+     * @param typeName String name of JVM element
+     * @return JVM descriptor
+     */
     public String computeDescriptor(String typeName) {
         switch (typeName) {
             case "Integer":

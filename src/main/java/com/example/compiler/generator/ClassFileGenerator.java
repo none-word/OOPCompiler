@@ -41,12 +41,16 @@ public class ClassFileGenerator {
      * @param node is a class-Node
      */
     private void createClassFileForClass(Node node) {
+        // retrieving class name and parent-class if exists
         Pair<String, String> signature = TreeUtil.getClassSignature(node);
         String className = signature.getFirst();
+        // Object.class is a default super-class if nothing specified in java
         String superClass = signature.getSecond() == null ? "java/lang/Object" : signature.getSecond();
+        // retrieving of special element for class(variables, constructors, etc.)
         List<Variable> classVariables = TreeUtil.classVariables(node);
         List<Constructor> classConstructors = TreeUtil.getConstructors(node);
         ClassWriter cw = new ClassWriter(0);
+        // .class fullname consists of its package + name
         String fullName = String.format("%s/%s", pkg, className);
         classConstructors.forEach(c -> c.setClassName(fullName));
         // class signature generation
@@ -57,14 +61,21 @@ public class ClassFileGenerator {
         classConstructors.forEach(c -> ConstructorGenerator.generateConstructor(c, cw));
         // method generation
         MethodGenerator.generateMethod(node, cw);
+        // generating .class file from bytes with given name
+        generateClassFileFromBytes(cw.toByteArray(), className);
+    }
 
-        byte[] b = cw.toByteArray();
+    /**
+     * Generate .class file from bytes
+     * @param byteInterpretation is a byte array of a future .class file
+     * @param className is a class name
+     */
+    private void generateClassFileFromBytes(byte[] byteInterpretation, String className) {
         try (FileOutputStream outputStream = new FileOutputStream(String.format("%s.class", className))) {
-            outputStream.write(b);
+            outputStream.write(byteInterpretation);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }

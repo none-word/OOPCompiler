@@ -18,6 +18,11 @@ import org.objectweb.asm.Type;
 @UtilityClass
 public class ConstructorGenerator {
 
+    /**
+     *
+     * @param constructor is a Java-object for constructor-member
+     * @param cw is a ClassWriter to generate constructors for our .class-files
+     */
     public void generateConstructor(Constructor constructor, ClassWriter cw) {
         String constructorDescriptor = computeDescriptor(constructor.getParameters());
         MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, "<init>", constructorDescriptor, null, null);
@@ -32,6 +37,11 @@ public class ConstructorGenerator {
         mv.visitEnd();
     }
 
+    /**
+     *
+     * @param parameters List of incoming variables
+     * @return descriptor for constructor
+     */
     private String computeDescriptor(List<Variable> parameters) {
         String typeDescriptors = parameters.stream()
             .map(Variable::getType)

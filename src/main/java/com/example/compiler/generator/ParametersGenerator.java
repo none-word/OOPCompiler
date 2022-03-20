@@ -9,6 +9,12 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ParametersGenerator {
 
+    /**
+     *
+     * @param node is a member node to generate parameters for
+     * @param returnType is a returnType for member
+     * @return String with descriptor for method
+     */
     public String generateParameters(Node node, String returnType) {
         return "(" + TreeUtil.getParameters(node).stream()
                 .map(Variable::getTypeChar)
