@@ -1,11 +1,10 @@
 package com.example.compiler.generator;
 
-import static org.objectweb.asm.Opcodes.ALOAD;
-
 import com.example.compiler.syntaxer.FormalGrammar;
 import com.example.compiler.syntaxer.Node;
 import lombok.experimental.UtilityClass;
 import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
 
 @UtilityClass
 public class BodyGenerator {
@@ -20,8 +19,8 @@ public class BodyGenerator {
         methodVisitor.visitCode();
         for (Node n: node.getChildNodes()) {
             if (n.getType().equals(FormalGrammar.VARIABLE_DECLARATION)) {
-                numberOfLocalVariables++;
-                methodVisitor.visitVarInsn(ALOAD, numberOfLocalVariables + 5);
+                methodVisitor.visitTypeInsn(Opcodes.NEW, "a");
+                methodVisitor.visitLdcInsn(1);
             }
         }
         methodVisitor.visitMaxs(15, 15);

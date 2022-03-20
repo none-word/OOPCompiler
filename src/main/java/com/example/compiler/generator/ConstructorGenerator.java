@@ -32,6 +32,7 @@ public class ConstructorGenerator {
         mv.visitMethodInsn(INVOKESPECIAL, Type.getInternalName(Object.class), "<init>", "()V", false);
         // Load 'this'
         mv.visitVarInsn(ALOAD, 0);
+        BodyGenerator.generateBody(mv, constructor.getBody());
         mv.visitInsn(RETURN);
         mv.visitMaxs(0, 0);
         mv.visitEnd();

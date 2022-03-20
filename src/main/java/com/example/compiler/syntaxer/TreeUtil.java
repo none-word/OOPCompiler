@@ -95,13 +95,14 @@ public class TreeUtil {
         for (Node cons : constructorNodes) {
             // Collecting parameters
             List<Variable> parameters = getParameters(cons.getChildNodes().get(0));
+            Node body = cons.getChildNodes().get(1);
             // Collecting Variable declarations inside constructor
             List<Node> variableNodes = cons.getChildNodes().stream()
                 .flatMap(convertToChildNodes)
                 .filter(isVariableDeclaration)
                 .collect(Collectors.toList());
             List<Variable> declaredVariables = variablesFromNodes(variableNodes);
-            constructors.add(new Constructor(parameters, declaredVariables));
+            constructors.add(new Constructor(parameters, declaredVariables, body));
         }
         return constructors;
 
