@@ -19,8 +19,8 @@ public class BodyGenerator {
         methodVisitor.visitCode();
         for (Node n: node.getChildNodes()) {
             if (n.getType().equals(FormalGrammar.VARIABLE_DECLARATION)) {
-                methodVisitor.visitTypeInsn(Opcodes.NEW, "a");
-                methodVisitor.visitLdcInsn(1);
+                methodVisitor.visitTypeInsn(Opcodes.NEW, node.getChildNodes().get(0).getChildNodes().get(0).getValue());
+                methodVisitor.visitLdcInsn(0);
             }
         }
         methodVisitor.visitMaxs(15, 15);

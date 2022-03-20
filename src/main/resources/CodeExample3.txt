@@ -9,7 +9,6 @@ class ClassName is
 
   this(bt : Integer) is
     var m : Real
-    var n : Integer
   end
 
 
