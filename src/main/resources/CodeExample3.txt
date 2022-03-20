@@ -24,3 +24,13 @@ class ClassName is
   var d : Integer
  end
 end
+
+class SecondClass is
+  var x1 : Integer
+  var x2 : Real
+
+  this() is
+      var x3 : Boolean
+  end
+
+end
