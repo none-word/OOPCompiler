@@ -9,8 +9,6 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 @Slf4j
 class LexerTest {
 
@@ -23,7 +21,7 @@ class LexerTest {
 
     private String getProgram(int testNumber) throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
-        Path path = Path.of("test_data", "test" + testNumber + ".txt");
+        Path path = Path.of("test_data_lexer", "test" + testNumber + ".txt");
         InputStream inputStream = classLoader.getResourceAsStream(String.valueOf(path));
         assert inputStream != null;
         return new String(inputStream.readAllBytes());
