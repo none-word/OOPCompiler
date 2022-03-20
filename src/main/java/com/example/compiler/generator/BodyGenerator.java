@@ -13,7 +13,7 @@ public class BodyGenerator {
     /**
      *
      * @param methodVisitor is a MethodVisitor from member of our PL to generate
-     * @param node is a
+     * @param node is a member which body will be written to .class file
      */
     public void generateBody(MethodVisitor methodVisitor, Node node) {
         int numberOfLocalVariables = 0;
