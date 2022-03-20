@@ -4,7 +4,6 @@ import com.example.compiler.syntaxer.FormalGrammar;
 import com.example.compiler.syntaxer.Node;
 import lombok.experimental.UtilityClass;
 import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
 
 @UtilityClass
 public class BodyGenerator {
@@ -19,7 +18,7 @@ public class BodyGenerator {
         methodVisitor.visitCode();
         for (Node n: node.getChildNodes()) {
             if (n.getType().equals(FormalGrammar.VARIABLE_DECLARATION)) {
-                methodVisitor.visitTypeInsn(Opcodes.NEW, node.getChildNodes().get(0).getChildNodes().get(0).getValue());
+                //methodVisitor.visitTypeInsn(Opcodes.NEW, node.getChildNodes().get(0).getChildNodes().get(0).getValue());
                 methodVisitor.visitLdcInsn(0);
             }
         }
